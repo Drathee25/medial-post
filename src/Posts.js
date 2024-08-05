@@ -1,4 +1,6 @@
-const BASE_URL = process.env.REACT_APP_API_URL; // Make sure this is set correctly
+import React from 'react';
+
+const BASE_URL = process.env.REACT_APP_API_URL; // Ensure this is set correctly
 
 function Posts({ posts }) {
   return (
@@ -7,21 +9,26 @@ function Posts({ posts }) {
       {posts.length === 0 ? (
         <p>No posts yet.</p>
       ) : (
-        posts.map((post, index) => (
-          <div key={index} className="post">
-            <h3>{post.title}</h3>
-            {post.image && (
-              <div className="image-card">
-                <img 
-                  src={`https://server-yzbe.onrender.com/${post.image}`} 
-                  alt={post.title} 
-                  className="image" 
-                />
-                {console.log(post.image)}
-              </div>
-            )}
-          </div>
-        ))
+        posts.map((post, index) => {
+          let imageUrl = post.image;
+          if (imageUrl.startsWith('http://localhost:3001/')) {
+            imageUrl = imageUrl.replace('http://localhost:3001/', `${BASE_URL}/`);
+          }
+          return (
+            <div key={index} className="post">
+              <h3>{post.title}</h3>
+              {imageUrl && (
+                <div className="image-card">
+                  <img 
+                    src={imageUrl} 
+                    alt={post.title} 
+                    className="image" 
+                  />
+                </div>
+              )}
+            </div>
+          );
+        })
       )}
     </div>
   );
