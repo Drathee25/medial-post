@@ -17,7 +17,7 @@ function Posts({ posts }) {
                   alt={post.title} 
                   className="image" 
                 />
-                console.log(post.image);
+                {console.log(post.image)}
               </div>
             )}
           </div>
