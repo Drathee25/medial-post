@@ -13,7 +13,7 @@ function Posts({ posts }) {
             {post.image && (
               <div className="image-card">
                 <img 
-                  src={`${BASE_URL}/${post.image}`} 
+                  src={`https://server-yzbe.onrender.com/${post.image}`} 
                   alt={post.title} 
                   className="image" 
                 />
